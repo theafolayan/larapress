@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -14,6 +15,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
+        return view('categories.index');
     }
 
     /**
@@ -24,6 +26,7 @@ class CategoriesController extends Controller
     public function create()
     {
         //
+        return view('categories.create');
     }
 
     /**
@@ -35,6 +38,9 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name' => 'required|unique:categories|min:2|max:50'
+        ]);
     }
 
     /**
@@ -57,6 +63,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         //
+        return view('categories.update');
     }
 
     /**
