@@ -17,14 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lux.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'CMS') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -72,9 +72,34 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+<main class="py-4">
+    @auth
+    <div class="container">
+            <div class="row">
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="#"> Posts</a>
+                            </li>
+                            <li class="list-group-item">
+                                    <a href="#"> Categories</a>
+                            </li>
+                            <li class="list-group-item">
+                                    <a href="#"> Comments</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-8">
+                            @yield('content')
+                    </div>
+
+            </div>
+    </div>
+    @else
+    @yield('content')
+    @endauth
+</main>
     </div>
 </body>
 </html>
