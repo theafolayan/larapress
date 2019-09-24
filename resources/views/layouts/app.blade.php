@@ -77,6 +77,7 @@
 <main class="py-4">
     @auth
     <div class="container">
+
             <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
@@ -93,6 +94,11 @@
 
                     </div>
                     <div class="col-md-8">
+                            @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{session()->get('success')}}
+                            </div>
+                            @endif
                             @yield('content')
                     </div>
 

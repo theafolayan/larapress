@@ -15,7 +15,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        return view('categories.index');
+        return view('categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -41,6 +41,20 @@ class CategoriesController extends Controller
         $this->validate($request,[
             'name' => 'required|unique:categories|min:2|max:50'
         ]);
+            // Using the create static class
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+
+        // Alternative
+        // $category = new Category();
+        // $category->name = $request->name;
+        // $category->save();
+        session()->flash('success', ' Category Added Sucessfully.....');
+        return redirect(route('categories.index'));
+
     }
 
     /**
