@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Requests\CreateCategoryRequest;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Category;
 
 class CategoriesController extends Controller
@@ -76,7 +76,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         //
-        return view('categories.update');
+        return view('categories.create')->with('category', $category);
     }
 
     /**
