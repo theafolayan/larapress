@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\Categories\CreateCategoryRequest;
+use App\Http\Requests\Categories\UpdateCategoryRequest;
 use App\Category;
 
 class CategoriesController extends Controller
@@ -86,9 +87,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name
+            ]);
+        session()->flash('success', 'Category updated Sucessfully!');
+        return redirect(route('categories.index'));
     }
 
     /**
